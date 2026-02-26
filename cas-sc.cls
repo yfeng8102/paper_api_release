@@ -60,7 +60,8 @@
 \RequirePackage{expl3,xparse}
 \@ifundefined{regex_match:nnTF}{\RequirePackage{l3regex}}{}
 \RequirePackage{etoolbox}
-\RequirePackage{booktabs,makecell,multirow,array,colortbl,dcolumn,stfloats}
+\RequirePackage{booktabs,makecell,multirow,array,colortbl,dcolumn}
+\IfFileExists{stfloats.sty}{\RequirePackage{stfloats}}{}
 \RequirePackage{xspace,xstring,footmisc}
 \RequirePackage[svgnames,dvipsnames]{xcolor}
 
@@ -185,4 +186,3 @@
 %
 % End of class 'cas-sc'
 %
-
