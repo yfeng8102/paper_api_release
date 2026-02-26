@@ -172,6 +172,8 @@ Details about the RSA simulation and extrapolation method for $\phi_\mathrm{j}$ 
 
 \subsection{Dissolution of Pickering particles}
 
+\subsubsection{Particle-resolved dissolution model}
+
 The dissolution of a particle can be described by the following mass transfer equation \cite{bird2002_}:
 \begin{equation}
     \frac{\mathrm{d} m_\mathrm{p}}{\mathrm{d} t} = - k_\mathrm{p} A_\mathrm{p} \left(C_\mathrm{sat} - C_{\mathrm{p}, \mathrm{c}} \right),
@@ -190,47 +192,31 @@ where $\rho_\mathrm{p}$ is the particle density. The dissolution process can be 
 \end{equation}
 where $\mathrm{Sh}=2$ is the Sherwood number, $\mathcal{D}_{\mathrm{p}, \mathrm{c}}$ is the particle diffusivity in the continuous phase, and $d_{32, \mathrm{p}}=6V_\mathrm{p}/A_\mathrm{p}$ is the Sauter mean diameter of the particle with $V_\mathrm{p}=\pi d_\mathrm{p}^3/6 + \pi d_\mathrm{p}^2l_\mathrm{c}/4$ be the particle volume and $A_\mathrm{p}=\pi d_\mathrm{p}^2 + \pi d_\mathrm{p}l_\mathrm{c}$ be the particle surface area. The reaction-controlled dissolution process is size-independent, while the diffusion-controlled dissolution process is size-dependent. In experiments, the reacting $k_\mathrm{p}$ is generally easier to measure by monitoring the particle concentration in the continuous phase. The diffusing $k_\mathrm{p}$ is relatively difficult to measure because it requires accurate measurement of particle diffusivity and size distribution in addition to particle concentration. Based on this consideration, the reaction mechanism will be adopted in most cases, whereas the diffusion mechanism will be used only for comparison with the reaction mechanism.
 
-Furthermore, Pickering particles are adsorbed at the Pickering emulsion droplet surfaces. Only a porportion of the particle surface is exposed into the continuous phase, while the rest is inside the disperse droplet. In this work, particles are assumed to be only dissoluble in the continuous phase. The proportion exposed to the continuous phase affects the dissolution rate. This proportion depends on the particle contact angle. In this work, the proportion of the available surface area for dissolution is calculated using the following equation
+Furthermore, Pickering particles are adsorbed at the Pickering emulsion droplet surfaces. Only a porportion of the particle surface is exposed into the continuous phase, while the rest is inside the dispersed droplet. In this work, particles are assumed to be only dissoluble in the continuous phase. The proportion exposed to the continuous phase affects the dissolution rate. This proportion depends on the particle contact angle. In this work, the proportion of the available surface area for dissolution is calculated using the following equation
 \begin{equation}
     k_\mathrm{a} = \frac{\pi d_\mathrm{p}^2 \frac{1 - \cos\theta}{2} + \theta d_\mathrm{p} l_\mathrm{c}}{\pi d_\mathrm{p}^2 + \pi d_\mathrm{p}l_\mathrm{c}}
     \label{eq: ka}
 \end{equation}
 where $\theta$ is the contact angle of particle. Eq.~\eqref{eq: ka} depends only on particle sizes and contact angle, which implies a planar interface.
 
-Finally, the diameter and mass change rate of the $j$-th Pickering particle adsorbed on the $i$-th Pickering emulsion droplet surface are written as:
+For the $i$-th droplet, the diameter and mass change rate of its $j$-th adsorbed particle are written as:
 \begin{equation}
-    \frac{\mathrm{d} d_{\mathrm{p}, i, j} }{\mathrm{d} t} = -\frac{2 k_{\mathrm{p}, i, j} k_{\mathrm{a}, i, j} \left(C_\mathrm{sat} - C_{\mathrm{p}, \mathrm{c}} \right) }{\rho_\mathrm{p}},
+    \frac{\mathrm{d} d_{\mathrm{p},j}^{(i)}}{\mathrm{d} t}
+    = -\frac{2 k_{\mathrm{p},j}^{(i)} k_{\mathrm{a},j}^{(i)} \left(C_\mathrm{sat} - C_{\mathrm{p},\mathrm{c}} \right)}{\rho_\mathrm{p}},
     \label{eq: ddpdt}
 \end{equation}
 \begin{equation}
-    \frac{\mathrm{d} m_{\mathrm{p}, i, j} }{\mathrm{d} t} = \frac{\pi}{2} \rho_\mathrm{p} \left(  d_{\mathrm{p}, i, j}^2 + d_{\mathrm{p}, i, j} l_{\mathrm{c}, i, j} \right)\frac{\mathrm{d} d_{\mathrm{p}, i, j} }{\mathrm{d} t}.
+    \frac{\mathrm{d} m_{\mathrm{p},j}^{(i)}}{\mathrm{d} t}
+    = \frac{\pi}{2}\rho_\mathrm{p} \left[\left(d_{\mathrm{p},j}^{(i)}\right)^2 + d_{\mathrm{p},j}^{(i)} l_{\mathrm{c},j}^{(i)}\right]
+    \frac{\mathrm{d} d_{\mathrm{p},j}^{(i)}}{\mathrm{d} t}.
 \end{equation}
 
-The particle concentration in the continuous phase can be evaluated using the particle mass conservation as:
+Particle dissolution affects API release through coverage. For the $i$-th droplet, the coverage is
 \begin{equation}
-    \frac{\mathrm{d} C_{\mathrm{p}, \mathrm{c}}}{\mathrm{d} t} = -\frac{1}{V_\mathrm{c}} \sum_{i=1}^{N_\mathrm{d}} \sum_{j=1}^{N_{\mathrm{p}, i}} \frac{\mathrm{d} m_{\mathrm{p}, i, j}}{\mathrm{d} t},
+    \phi^{(i)} = \sum_{j=1}^{N_{\mathrm{p}}^{(i)}} \varphi\!\left(r_{\mathrm{p},j}^{(i)}, l_{\mathrm{c},j}^{(i)}, \theta, r_{\mathrm{d}}^{(i)}\right),
 \end{equation}
-where $C_{\mathrm{p}, \mathrm{c}}$ is the particle concentration in the continuous phase and $V_\mathrm{c}$ is the volume of the continuous phase, $N_\mathrm{d}$ is the droplet number and $N_{\mathrm{p}, i}$ is the number of particles adsorbed on the $i$-th droplet.
+where $\varphi$ is the coverage contribution of one adsorbed particle as a function of particle size, contact angle, and droplet size, and $N_{\mathrm{p}}^{(i)}$ is the number of particles on droplet $i$. The detailed numerical evaluation of $\varphi$ is provided in \cite{feng2025_Phys.Rev.E}.
 
-Particle dissolution affects API release from the Pickering emulsion droplets through coverage. The coverage of the $i$-th droplet can be calculated as:
-\begin{equation}
-    \phi_i = \sum_{j=1}^{N_{\mathrm{p}, i}} \varphi(r_{\mathrm{p}, i , j}, l_{\mathrm{c}, i,j}, \theta, r_{\mathrm{d}, i}),
-\end{equation}
-where $\varphi(r_{\mathrm{p}, i , j}, l_{\mathrm{c}, i,j}, \theta, r_{\mathrm{d}, i})$ is the coverage of the $j$-th particle adsorbed on the $i$-th droplet, depengind on particle sizes, contact angle, and droplet size. It is calculated using numerical ingeraval, whose details are provided in \cite{feng2025_Phys.Rev.E}.
-
-\subsection{Release of API from Pickering emulsions}
-
-The release of API from the $i$-th dispersed droplet to the continuous phase can be described using the interface transport concentration equation \cite{bird2002_} as:
-\begin{equation}
-    \frac{\mathrm{d} C_{\mathrm{API}, \mathrm{d},i}}{\mathrm{d} t} = -\frac{1}{\frac{P}{k_{\mathrm{d}, i}} + \frac{1}{k_{\mathrm{c}, i}}} \frac{A_{\mathrm{d}, i} (1-\phi_i)}{V_{\mathrm{d}, i}} \left( P C_{\mathrm{API}, \mathrm{d}, i} - C_{\mathrm{API}, \mathrm{c}} \right),
-\end{equation}
-where $C_{\mathrm{API}, \mathrm{d},i}$ is the API concentration in the $i$-th droplet, $C_{\mathrm{API}, \mathrm{c}}$ is the API concentration in the continuous phase, $P=C_{\mathrm{API}, \mathrm{c}}^*/C_{\mathrm{API}, \mathrm{d}}^*$ is the partition coefficient with $C_{\mathrm{API}, \mathrm{d}}^*$ and $C_{\mathrm{API}, \mathrm{c}}^*$ are the API concentration at the interface of the disperse and continuous phases, respectively, $k_{\mathrm{d}, i} = \mathrm{Sh} \mathcal{D}_{\mathrm{API}, \mathrm{d}} / d_{\mathrm{d}, i}$ is the mass transfer coefficient in the disperse phase, $k_{\mathrm{c}, i} = \mathrm{Sh} \mathcal{D}_{\mathrm{API}, \mathrm{c}} / d_{\mathrm{d}, i}$ is the mass transfer coefficient in the continuous phase, $\mathcal{D}_{\mathrm{API}, \mathrm{d}}$ and $\mathcal{D}_{\mathrm{API}, \mathrm{c}}$ are the API diffusivities in the disperse and continuous phases, respectively, $A_{\mathrm{d}, i}$, $V_{\mathrm{d}, i}$, $\phi_i$ are the surface area, volume, and coverage of the $i$-th droplet, respectively.
-
-Accordingly, the governing equation for API concentration in the continuous phase can be written as:
-\begin{equation}
-    \frac{\mathrm{d} C_{\mathrm{API}, \mathrm{c}}}{\mathrm{d} t} = -\frac{1}{V_\mathrm{c}} \sum_{i=1}^{N_\mathrm{d}} \left( V_{\mathrm{d}, i} \frac{\mathrm{d} C_{\mathrm{API}, \mathrm{d},i}}{\mathrm{d} t} \right) = \sum_{i=1}^{N_\mathrm{d}} \left( \frac{1}{\frac{P}{k_{\mathrm{d}, i}} + \frac{1}{k_{\mathrm{c}, i}}} \frac{A_{\mathrm{d}, i} (1-\phi_i)}{V_{\mathrm{c}}} \left( P C_{\mathrm{API}, \mathrm{d}, i} - C_{\mathrm{API}, \mathrm{c}} \right) \right),
-\end{equation}
-where $V_\mathrm{c}$ is the volume of the continuous phase.
 
 \subsection{Particle dissolution solved using population balance equation}
 
@@ -245,7 +231,8 @@ As mentioned previously, $l_\mathrm{c}$ remains constant during particle dissolu
     \frac{\partial n}{\partial t} + \frac{\partial}{\partial r_\mathrm{p}} \left(\frac{\mathrm{d} r_\mathrm{p}}{\mathrm{d} t} n \right) = 0
     \label{eq: pbe}
 \end{equation}
-where $\mathrm{d} r_\mathrm{p}/\mathrm{d} t$ can be calculated using Eq.~\eqref{eq: ddpdt}
+where $\mathrm{d} r_\mathrm{p}/\mathrm{d} t$ can be calculated using Eq.~\eqref{eq: ddpdt}.
+
 
 \subsubsection{Sectional method for PBE}
 
@@ -268,6 +255,48 @@ The bivariate PBE (Eq.~\eqref{eq: pbe}) can be also solved using conditioned qua
     \frac{\partial \mathcal{M}_{i,j}}{\partial t} + \int_0^{+\infty} \int_0^{+\infty} \frac{\partial}{\partial r_\mathrm{p}} \left(\frac{\mathrm{d} r_\mathrm{p}}{\mathrm{d} t} n \right) \,\mathrm{d} r_\mathrm{p} \, \mathrm{d} l_\mathrm{c} = 0
 \end{equation}
 where $\mathcal{M}_{i,j} = \int_0^{+\infty} \int_0^{+\infty} n \,\mathrm{d} r_\mathrm{p} \, \mathrm{d} l_\mathrm{c}$.
+
+\subsubsection{Extension to a population of droplets}
+
+For a population of $N_\mathrm{d}$ droplets, the continuous-phase particle concentration follows mass conservation:
+\begin{equation}
+    \frac{\mathrm{d} C_{\mathrm{p},\mathrm{c}}}{\mathrm{d} t}
+    = -\frac{1}{V_\mathrm{c}} \sum_{i=1}^{N_\mathrm{d}} \sum_{j=1}^{N_{\mathrm{p}}^{(i)}} \frac{\mathrm{d} m_{\mathrm{p},j}^{(i)}}{\mathrm{d} t},
+\end{equation}
+where $V_\mathrm{c}$ is the continuous-phase volume.
+
+\subsection{API release from Pickering emulsion droplets}
+
+The release of API from the $i$-th dispersed droplet to the continuous phase can be described by
+\begin{equation}
+    \frac{\mathrm{d} C_{\mathrm{API},\mathrm{d}}^{(i)}}{\mathrm{d} t}
+    = -\frac{1}{\frac{P}{k_{\mathrm{d}}^{(i)}} + \frac{1}{k_{\mathrm{c}}^{(i)}}}
+    \frac{A_{\mathrm{d}}^{(i)} \left(1-\phi^{(i)}\right)}{V_{\mathrm{d}}^{(i)}}
+    \left(P C_{\mathrm{API},\mathrm{d}}^{(i)} - C_{\mathrm{API},\mathrm{c}}\right),
+\end{equation}
+where $C_{\mathrm{API},\mathrm{d}}^{(i)}$ is the API concentration in the $i$-th droplet, $C_{\mathrm{API},\mathrm{c}}$ is the API concentration in the continuous phase, $P=C_{\mathrm{API},\mathrm{c}}^*/C_{\mathrm{API},\mathrm{d}}^*$ is the partition coefficient, and $A_{\mathrm{d}}^{(i)}$, $V_{\mathrm{d}}^{(i)}$, and $\phi^{(i)}$ are the surface area, volume, and coverage of the $i$-th droplet, respectively.
+
+The API mass transfer coefficient in the dispersed phase and continuous phase are $k_{\mathrm{d}}^{(i)}$ and $k_{\mathrm{c}}^{(i)}$, respectively, which can be calculated as:
+\begin{equation}
+    k_{\mathrm{d}}^{(i)} = \frac{\mathrm{Sh}\mathcal{D}_{\mathrm{API},\mathrm{d}}}{d_{\mathrm{d}}^{(i)}},
+    \qquad
+    k_{\mathrm{c}}^{(i)} = \frac{\mathrm{Sh}\mathcal{D}_{\mathrm{API},\mathrm{c}}}{d_{\mathrm{d}}^{(i)}},
+\end{equation}
+where $\mathcal{D}_{\mathrm{API},\mathrm{d}}$ and $\mathcal{D}_{\mathrm{API},\mathrm{c}}$ are the API diffusivity in the dispersed phase and continuous phase, respectively, and $d_{\mathrm{d}}^{(i)}$ is the diameter of the $i$-th droplet. The Sherwood number is assumed to be 2 for all droplets, which corresponds to a diffusion-controlled mass transfer process with a stagnant layer around the droplet.
+
+According to API mass conservation, the governing equation for API concentration in the continuous phase can be written as:
+\begin{equation}
+    \frac{\mathrm{d} C_{\mathrm{API},\mathrm{c}}}{\mathrm{d} t}
+    = -\frac{1}{V_\mathrm{c}} \sum_{i=1}^{N_\mathrm{d}} V_{\mathrm{d}}^{(i)} \frac{\mathrm{d} C_{\mathrm{API},\mathrm{d}}^{(i)}}{\mathrm{d} t}
+    = \sum_{i=1}^{N_\mathrm{d}}
+    \frac{1}{\frac{P}{k_{\mathrm{d}}^{(i)}} + \frac{1}{k_{\mathrm{c}}^{(i)}}}
+    \frac{A_{\mathrm{d}}^{(i)}\left(1-\phi^{(i)}\right)}{V_\mathrm{c}}
+    \left(P C_{\mathrm{API},\mathrm{d}}^{(i)} - C_{\mathrm{API},\mathrm{c}}\right),
+\end{equation}
+where $V_\mathrm{c}$ is the volume of the continuous phase.
+
+
+
 
 
 
